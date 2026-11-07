@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://smartdigitalsolutions44-ops.github.io/dandis-radio/sitemap.xml
