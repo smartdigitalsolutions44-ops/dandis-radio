@@ -24,7 +24,7 @@ The website is everything inside `dist/`. Upload those files to a static host, o
 
 When changing the domain, update the canonical and Open Graph URL in `dist/index.html`, `dist/robots.txt`, `dist/sitemap.xml`, and the homepage in the lyrics client identification header. The is.gd links are permanent redirects to the current Sites address, so obtain a new short link if moving the site. Never assume they update automatically.
 
-The Desktop export deliberately excludes the hosted checkout's `.git` and `.openai` folders. It contains no tokens or account credentials. Claude can initialize it as a fresh GitHub repository. Published to GitHub; pushes to `main` deploy `dist/` to GitHub Pages via `.github/workflows/pages.yml`.
+The Desktop export deliberately excludes the hosted checkout's `.git` and `.openai` folders. It contains no tokens or account credentials. Claude can initialize it as a fresh GitHub repository. Published to GitHub. GitHub Pages serves the `gh-pages` branch, which holds the contents of `dist/`. To redeploy after changes: `git subtree push --prefix dist origin gh-pages`.
 
 ## Main files
 
