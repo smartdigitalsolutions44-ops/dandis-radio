@@ -50,7 +50,7 @@
   document.addEventListener('radio-track-change', () => {
     trackRevision++;
     get('lyrics-results').replaceChildren(); get('lyrics-content').replaceChildren(); get('lyrics-track').hidden = true;
-    status('Song changed. Choose “Find lyrics” for the selected song.');
+    status('Finding lyrics for this song…');
   });
   function status(text, error = false) { get('lyrics-status').textContent = text; get('lyrics-status').classList.toggle('error', error); }
   function plainText(track) {
@@ -85,32 +85,76 @@
     });
     if (tracks.length === 1) showTrack(tracks[0], get('lyrics-results').firstElementChild);
   }
-  get('lyrics-form').addEventListener('submit', async event => {
-    event.preventDefault();
-    if (requestActive) return;
-    const title = get('lyrics-song').value.trim();
-    const artist = get('lyrics-artist').value.trim();
-    if (!title) { status('Enter a song title first.', true); return; }
-    const query = new URLSearchParams({ track_name: title }); if (artist) query.set('artist_name', artist);
-    const key = query.toString();
-    get('lyrics-track').hidden = true;
-    get('lyrics-content').replaceChildren();
-    get('lyrics-results').replaceChildren();
-    if (cache.has(key)) { renderResults(cache.get(key)); return; }
+  // Spotify titles carry version and credit tags that lyric sites leave out:
+  // "absence has a name - Slowed", "Chiltern Firehouse .", "Frisky (feat. Labrinth)".
+  const TAGS = 'feat|ft|featuring|with|prod|slowed|sped|speed|super|ultra|reverb|nightcore|bass|boosted|tiktok|version|remaster|remastered|radio edit|extended|live|loop|looped|instrumental|remix|mix|edit|hardtekk|hardstyle|jumpstyle';
+  function cleanTitle(title) {
+    let text = title.replace(new RegExp(`\\s*[\\(\\[][^\\)\\]]*\\b(?:${TAGS})\\b[^\\)\\]]*[\\)\\]]`, 'gi'), '');
+    text = text.replace(new RegExp(`\\s+[-–]\\s+[^-–]*\\b(?:${TAGS})\\b.*$`, 'i'), '');
+    const tagless = text.trim();
+    text = text.replace(/[\s.·,!?*]+$/, '').replace(/^[\s.·,*]+/, '').trim();
+    return (text.length >= 2 ? text : tagless) || title.trim();
+  }
+  const firstArtist = artist => artist.split(/\s*(?:,|&|\bx\b|\bfeat\.?|\bft\.?)\s*/i)[0].trim();
+  const simple = value => String(value || '').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/[^\p{L}\p{N}]+/gu, '');
+  function webSearch(title, artist) {
+    const link = get('lyrics-web'); if (!link) return;
+    link.href = `https://www.google.com/search?q=${encodeURIComponent(`${artist} ${title} lyrics`.trim())}`;
+    link.hidden = false;
+  }
+  async function lookup(params, signal) {
+    const query = new URLSearchParams(params).toString();
+    if (cache.has(query)) return cache.get(query);
+    const response = await fetch(`https://lrclib.net/api/search?${query}`, { signal, credentials: 'omit', headers: { 'Lrclib-Client': 'DandisRadio/3.2 (https://smartdigitalsolutions44-ops.github.io/dandis-radio)' } });
+    if (response.status === 429 || response.status === 503) { const seconds = Number(response.headers.get('Retry-After')); retryAfter = Date.now() + (Number.isFinite(seconds) && seconds > 0 ? seconds : 30) * 1000; throw new Error('Lyrics search is busy. Please wait a moment and try again.'); }
+    if (!response.ok) throw new Error('The lyrics service is unavailable right now. Please try again later.');
+    const data = await response.json();
+    if (!Array.isArray(data)) throw new Error('The lyrics service returned an unexpected response. Try again later.');
+    const tracks = data.filter(track => track && typeof track === 'object' && typeof track.trackName === 'string').slice(0, 20);
+    if (cache.size >= 30) cache.delete(cache.keys().next().value);
+    cache.set(query, tracks);
+    return tracks;
+  }
+  let pending = false;
+  async function runSearch(automatic = false) {
+    if (requestActive) { pending = true; return; }
+    const rawTitle = get('lyrics-song').value.trim();
+    const rawArtist = get('lyrics-artist').value.trim();
+    if (!rawTitle) { if (!automatic) status('Enter a song title first.', true); return; }
+    const title = cleanTitle(rawTitle);
+    const artist = rawArtist ? firstArtist(rawArtist) : '';
+    get('lyrics-track').hidden = true; get('lyrics-content').replaceChildren(); get('lyrics-results').replaceChildren();
+    const web = get('lyrics-web'); if (web) web.hidden = true;
     if (Date.now() < retryAfter) { status(`Lyrics search is busy. Try again in ${Math.ceil((retryAfter - Date.now()) / 1000)} seconds.`, true); return; }
-    requestActive = true; get('lyrics-search').disabled = true; get('lyrics-search').textContent = 'Finding…'; status('Looking for your song…');
+    // Exact title + artist first, then a looser keyword search, then title only (kept to that artist).
+    const attempts = artist ? [{ track_name: title, artist_name: artist }, { q: `${artist} ${title}` }, { track_name: title }] : [{ track_name: title }];
+    requestActive = true; get('lyrics-search').disabled = true; get('lyrics-search').textContent = 'Finding…'; status(`Looking for lyrics to “${title}”…`);
     const controller = new AbortController(); const timeout = setTimeout(() => controller.abort(), 15000);
     const revision = trackRevision;
     try {
-      const response = await fetch(`https://lrclib.net/api/search?${query}`, { signal: controller.signal, credentials: 'omit', headers: { 'Lrclib-Client': 'DandisRadio/3.1 (https://smartdigitalsolutions44-ops.github.io/dandis-radio)' } });
-      if (response.status === 429 || response.status === 503) { const seconds = Number(response.headers.get('Retry-After')); retryAfter = Date.now() + (Number.isFinite(seconds) && seconds > 0 ? seconds : 30) * 1000; throw new Error('Lyrics search is busy. Please wait a moment and try again.'); }
-      if (!response.ok) throw new Error('The lyrics service is unavailable right now. Please try again later.');
-      const data = await response.json();
-      if (!Array.isArray(data)) throw new Error('The lyrics service returned an unexpected response. Try again later.');
-      const tracks = data.filter(track => track && typeof track === 'object' && typeof track.trackName === 'string').slice(0, 20);
-      if (cache.size >= 15) cache.delete(cache.keys().next().value);
-      cache.set(key, tracks); if (revision === trackRevision) renderResults(tracks);
-    } catch (error) { if (revision === trackRevision) status(error.name === 'AbortError' ? 'Search timed out. Check your connection and try again.' : error instanceof TypeError ? 'Could not reach the lyrics service. Check your connection and try again.' : error.message, true); }
-    finally { clearTimeout(timeout); requestActive = false; get('lyrics-search').disabled = false; get('lyrics-search').textContent = 'Find ↗'; }
-  });
+      let found = [];
+      for (const params of attempts) {
+        let tracks = await lookup(params, controller.signal);
+        if (artist && !params.artist_name) tracks = tracks.filter(track => simple(track.artistName).includes(simple(artist)));
+        if (tracks.length) { found = tracks; break; }
+      }
+      // Results with words first, so the best one opens straight away.
+      found = [...found].sort((a, b) => Number(Boolean(plainText(b) || b.instrumental)) - Number(Boolean(plainText(a) || a.instrumental)));
+      if (revision !== trackRevision) return;
+      renderResults(found);
+      if (found.length > 1 && (plainText(found[0]) || found[0].instrumental)) showTrack(found[0], get('lyrics-results').firstElementChild);
+      if (!found.length) { status(`No lyrics found for “${title}” on LRCLIB. Smaller or newer songs often aren’t there yet.`); webSearch(title, artist); }
+    } catch (error) {
+      if (revision === trackRevision) { status(error.name === 'AbortError' ? 'Lyrics search timed out. Check your connection and try again.' : error instanceof TypeError ? 'Could not reach the lyrics service (lrclib.net). If you’re at work, the network may block it.' : error.message, true); webSearch(title, artist); }
+    } finally {
+      clearTimeout(timeout); requestActive = false; get('lyrics-search').disabled = false; get('lyrics-search').textContent = 'Find ↗';
+      if (pending) { pending = false; runSearch(true); }
+    }
+  }
+  get('lyrics-form').addEventListener('submit', event => { event.preventDefault(); return runSearch(false); });
+  // Look lyrics up automatically when a song is picked (short delay so skipping songs doesn't spam the service).
+  let autoTimer = null;
+  const scheduleAuto = () => { clearTimeout(autoTimer); autoTimer = setTimeout(() => runSearch(true), 700); };
+  document.addEventListener('radio-track-change', scheduleAuto);
+  if (get('lyrics-song').value.trim()) scheduleAuto();
 })();
