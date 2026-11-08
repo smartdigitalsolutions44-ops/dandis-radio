@@ -10,6 +10,12 @@ const catalog = (await read('soundcloud-import.json')).tracks;
 const evidence = await read('soundcloud-evidence.json');
 const reviewedIndexes = new Set(Object.keys(JSON.parse((await readFile('build-catalog.mjs', 'utf8')).match(/const reviewed = (\{.*?\});/s)[1].replace(/(\d+):/g, '"$1":'))).map(Number));
 let previous = { matches: {}, checked: {} };
+// Optional, from web searches: { "profiles": { "<artist name>": "<soundcloud permalink>" },
+//   "tracks": { "<spotify track id>": ["https://soundcloud.com/user/track", ...] } }
+// Profiles are reviewed accounts for artists whose name guess found nobody or the wrong person.
+// Hinted tracks get exactly the same checks as everything else.
+let hints = {};
+try { hints = await read('soundcloud-hints.json'); } catch {}
 try { previous = await read('soundcloud-auto-matches.json'); } catch {}
 
 const VERSION_WORDS = ['slowed', 'sped', 'speed', 'nightcore', 'reverb', 'remix', 'bass', 'boosted', 'instrumental', 'acapella', 'acoustic', 'live', 'cover', 'mashup', 'extended', 'edit', 'mix', 'flip', 'vip', 'bootleg', 'hardtekk', 'phonk', 'tiktok'];
@@ -54,6 +60,8 @@ function findProfile(artist) {
   if (!key) return Promise.resolve(null);
   if (!profileCache.has(key)) profileCache.set(key, (async () => {
     const base = norm(artist);
+    const hinted = hints.profiles?.[artist];
+    if (hinted) { const result = await page(`https://soundcloud.com/${hinted}`); const user = result && hydration(result.html, 'user'); if (user) return { permalink: user.permalink, username: user.username }; }
     const guesses = [...new Set([knownProfiles.get(key), base.replace(/ /g, ''), base.replace(/ /g, '-'), base.replace(/ /g, '_'), `${base.replace(/ /g, '')}music`, `${base.replace(/ /g, '')}official`, `official${base.replace(/ /g, '')}`, `the${base.replace(/ /g, '')}`].filter(Boolean))].filter(guess => /^[a-z0-9_-]{2,}$/.test(guess));
     for (const guess of guesses) {
       const result = await page(`https://soundcloud.com/${guess}`);
@@ -72,6 +80,16 @@ async function profileTrackLinks(permalink) {
     if (!result) continue;
     for (const match of result.html.matchAll(/<a itemprop="url" href="(\/[^"\/]+\/[^"\/?]+)">([^<]*)<\/a>/g)) links.set(`https://soundcloud.com${match[1]}`, match[2]);
   }
+  // Album and playlist pages list tracks that may not be among the ~10 on the tracks page.
+  const sets = new Set();
+  for (const list of ['albums', 'sets']) {
+    const result = await page(`https://soundcloud.com/${permalink}/${list}`);
+    if (result) for (const match of result.html.matchAll(/href="(\/[^"\/]+\/sets\/[^"\/?]+)"/g)) if (match[1].startsWith(`/${permalink}/`)) sets.add(match[1]);
+  }
+  for (const set of [...sets].slice(0, 8)) {
+    const result = await page(`https://soundcloud.com${set}`);
+    if (result) for (const match of result.html.matchAll(/<a itemprop="url" href="(\/[^"\/]+\/[^"\/?]+)">([^<]*)<\/a>/g)) links.set(`https://soundcloud.com${match[1]}`, match[2]);
+  }
   return links;
 }
 
@@ -89,9 +107,17 @@ async function soundAt(url) {
   return { id: sound.id, title: sound.title, artist: sound.user?.username, artistUrl: sound.user?.permalink_url, url: sound.permalink_url, duration: sound.duration, fullDuration: sound.full_duration, policy: sound.policy, embeddable: sound.embeddable_by, streamable: sound.streamable, source: url };
 }
 
-async function findMatch(track) {
+async function findMatch(track, id) {
   const artists = track.artist.replace(/ /g, ' ').split(/,\s*/).filter(Boolean);
   const tried = [];
+  const artistKeys = artists.map(artist => norm(artist).replace(/ /g, ''));
+  for (const url of hints.tracks?.[id] || []) {
+    const sound = await soundAt(url);
+    if (!sound || !titleMatches(track.title, sound.title, artists)) continue;
+    if (!artistKeys.includes(norm(sound.artist).replace(/ /g, ''))) continue;
+    if (Math.abs(sound.fullDuration - track.sourceDuration) > 3000) continue;
+    return { sound, profiles: ['hint'] };
+  }
   for (const artist of artists) {
     const profile = await findProfile(artist);
     if (!profile) continue;
@@ -111,7 +137,9 @@ async function findMatch(track) {
   return { sound: null, profiles: tried };
 }
 
-const targets = catalog.map((track, index) => ({ track, index, id: track.spotifyUri.split(':').pop() })).filter(item => !reviewedIndexes.has(item.index));
+const targets = catalog.map((track, index) => ({ track, index, id: track.spotifyUri.split(':').pop() })).filter(item => !reviewedIndexes.has(item.index))
+  // HINTS_ONLY=1 rechecks only songs with web-search hints (quick, few requests).
+  .filter(item => !process.env.HINTS_ONLY || hints.tracks?.[item.id] || item.track.artist.split(/,s*/).some(artist => hints.profiles?.[artist]));
 const matches = { ...previous.matches };
 const checked = { ...previous.checked };
 let done = 0;
@@ -119,9 +147,10 @@ const queue = [...targets];
 async function worker() {
   while (queue.length) {
     const { track, id } = queue.shift();
-    const { sound, profiles } = await findMatch(track);
-    if (sound) matches[id] = sound; else delete matches[id];
-    checked[id] = { title: track.title, artist: track.artist, profiles, matched: Boolean(sound) };
+    const { sound, profiles } = await findMatch(track, id);
+    // Keep earlier matches when a pass finds nothing: a miss can be a rate-limited request, not a removal.
+    if (sound) matches[id] = sound;
+    checked[id] = { title: track.title, artist: track.artist, profiles, matched: Boolean(sound || matches[id]) };
     if (++done % 20 === 0) console.log(`${done}/${targets.length} checked, ${Object.keys(matches).length} matched, ${requests} requests`);
     await sleep(150);
   }

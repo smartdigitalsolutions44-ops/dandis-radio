@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-08T11:35:43.512Z",
+  "checkedAt": "2026-11-08T11:57:12.827Z",
   "rule": "uploader is the credited artist, same title and version words, full duration within 3s",
   "matches": {
     "4PSedgFfQUWe6ncpmpEcxs": {
@@ -445,17 +445,17 @@
       "source": "https://soundcloud.com/olivertree/alien-boy-3"
     },
     "70Hi6JJq98794TMe1IeIAH": {
-      "id": 1404523672,
+      "id": 2186191448,
       "title": "Mind Control",
       "artist": "Oliver Tree",
       "artistUrl": "https://soundcloud.com/olivertree",
-      "url": "https://soundcloud.com/olivertree/mind-control",
-      "duration": 120149,
-      "fullDuration": 120137,
+      "url": "https://soundcloud.com/olivertree/mind-control-1",
+      "duration": 120241,
+      "fullDuration": 120242,
       "policy": "MONETIZE",
       "embeddable": "all",
       "streamable": true,
-      "source": "https://soundcloud.com/olivertree/mind-control"
+      "source": "https://soundcloud.com/olivertree/mind-control-1"
     },
     "07ShpyCaAqfCseA3fWFFMY": {
       "id": 1178975659,
@@ -651,32 +651,6 @@
       "embeddable": "all",
       "streamable": true,
       "source": "https://soundcloud.com/benny-bellson/on-and-on"
-    },
-    "4Z6Jl9a8gZvwlfc8wrUf11": {
-      "id": 10939995,
-      "title": "Little Bit",
-      "artist": "Lykke Li",
-      "artistUrl": "https://soundcloud.com/lykkeli",
-      "url": "https://soundcloud.com/lykkeli/little-bit-1",
-      "duration": 273473,
-      "fullDuration": 273527,
-      "policy": "MONETIZE",
-      "embeddable": "all",
-      "streamable": true,
-      "source": "https://soundcloud.com/lykkeli/little-bit-1"
-    },
-    "4WKUmjoUeYkzyoEvTbiVdW": {
-      "id": 2304186656,
-      "title": "Night, Blooming Jasmine . (Prod Me)",
-      "artist": "fakemink",
-      "artistUrl": "https://soundcloud.com/fakemink",
-      "url": "https://soundcloud.com/fakemink/night-blooming-jasmine-prod-me",
-      "duration": 178914,
-      "fullDuration": 178912,
-      "policy": "MONETIZE",
-      "embeddable": "me",
-      "streamable": true,
-      "source": "https://soundcloud.com/fakemink/night-blooming-jasmine-prod-me"
     },
     "5yEW4cx3x9sgfs3j5kI2qZ": {
       "id": 2325370748,
@@ -989,6 +963,175 @@
       "embeddable": "all",
       "streamable": true,
       "source": "https://soundcloud.com/ooes-music/lxczwctbedkr"
+    },
+    "7hUrIUceA0Op6bzk1TEYwt": {
+      "id": 2204649751,
+      "title": "Crocodile tears",
+      "artist": "yukan",
+      "artistUrl": "https://soundcloud.com/user-428613266",
+      "url": "https://soundcloud.com/user-428613266/crocodile-tears",
+      "duration": 76894,
+      "fullDuration": 76878,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/user-428613266/crocodile-tears"
+    },
+    "2T3vYzsy7BuHDR8bhwxyIp": {
+      "id": 2316729878,
+      "title": "LONOWN, Asenssia - addiction",
+      "artist": "LONOWN",
+      "artistUrl": "https://soundcloud.com/lonown6",
+      "url": "https://soundcloud.com/lonown6/lonown-asenssia-addiction-1",
+      "duration": 209017,
+      "fullDuration": 208971,
+      "policy": "ALLOW",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/lonown6/lonown-asenssia-addiction-1"
+    },
+    "40X1yT1UacjPEucWOyviyO": {
+      "id": 2178883147,
+      "title": "said&done",
+      "artist": "gunnr",
+      "artistUrl": "https://soundcloud.com/lilgunnr",
+      "url": "https://soundcloud.com/lilgunnr/said-done-master",
+      "duration": 156952,
+      "fullDuration": 156944,
+      "policy": "ALLOW",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/lilgunnr/said-done-master"
+    },
+    "6Ksueaf6RSn6cTo9LVHQPJ": {
+      "id": 2181149791,
+      "title": "type london [prod. UCV]",
+      "artist": "ONDA ANDAR",
+      "artistUrl": "https://soundcloud.com/onda_andar",
+      "url": "https://soundcloud.com/onda_andar/type-london",
+      "duration": 103575,
+      "fullDuration": 103576,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/onda_andar/type-london"
+    },
+    "54YtQU1xcmFNy42II7ebWD": {
+      "id": 2360555558,
+      "title": "Matrix",
+      "artist": "yukan",
+      "artistUrl": "https://soundcloud.com/user-428613266",
+      "url": "https://soundcloud.com/user-428613266/matrix-2",
+      "duration": 120036,
+      "fullDuration": 119990,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/user-428613266/matrix-2"
+    },
+    "37EWjcq59wczW9NoMvFbmv": {
+      "id": 2354050613,
+      "title": "BEGGIN HARDTEKK - Slowed",
+      "artist": "wharoxmane",
+      "artistUrl": "https://soundcloud.com/wharoxmane82434",
+      "url": "https://soundcloud.com/wharoxmane82434/beggin-hardtekk-slowed",
+      "duration": 121998,
+      "fullDuration": 121951,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/wharoxmane82434/beggin-hardtekk-slowed"
+    },
+    "031aTZ4s6B7GqVxAxGbLxp": {
+      "id": 2285639630,
+      "title": "Arcade (prod. me + haroon)",
+      "artist": "yukan",
+      "artistUrl": "https://soundcloud.com/user-428613266",
+      "url": "https://soundcloud.com/user-428613266/arcade-prod-me-and-haroon",
+      "duration": 127132,
+      "fullDuration": 127137,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/user-428613266/arcade-prod-me-and-haroon"
+    },
+    "77zmAp7V5l7Ou8PHBCFFb5": {
+      "id": 2342285216,
+      "title": "Get My Get Back",
+      "artist": "Nia Smith",
+      "artistUrl": "https://soundcloud.com/niasmithy",
+      "url": "https://soundcloud.com/niasmithy/get-my-get-back",
+      "duration": 185714,
+      "fullDuration": 185668,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/niasmithy/get-my-get-back"
+    },
+    "7vJ8ZobTqm4SmqXAP4w1Kw": {
+      "id": 2325425561,
+      "title": "High",
+      "artist": "Nia Smith",
+      "artistUrl": "https://soundcloud.com/niasmithy",
+      "url": "https://soundcloud.com/niasmithy/high",
+      "duration": 175046,
+      "fullDuration": 175000,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/niasmithy/high"
+    },
+    "01roWDSSXoCAVrhHTlDgm1": {
+      "id": 2200514347,
+      "title": "somuchmore",
+      "artist": "gunnr",
+      "artistUrl": "https://soundcloud.com/lilgunnr",
+      "url": "https://soundcloud.com/lilgunnr/somuchmore",
+      "duration": 135911,
+      "fullDuration": 135915,
+      "policy": "ALLOW",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/lilgunnr/somuchmore"
+    },
+    "6HDzIQC0oG4ruGHwPSmfdK": {
+      "id": 1792972132,
+      "title": "Misfit",
+      "artist": "Fixupboy",
+      "artistUrl": "https://soundcloud.com/fixupboy",
+      "url": "https://soundcloud.com/fixupboy/misfit-sapjer",
+      "duration": 161599,
+      "fullDuration": 161620,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/fixupboy/misfit-sapjer"
+    },
+    "2UFNeQj0uYjiNPrIO8Msro": {
+      "id": 2024261868,
+      "title": "SHOW NO LOVE",
+      "artist": "BXNFXM",
+      "artistUrl": "https://soundcloud.com/felipebonfim",
+      "url": "https://soundcloud.com/felipebonfim/show-no-love",
+      "duration": 116839,
+      "fullDuration": 116846,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/felipebonfim/show-no-love"
+    },
+    "4PMPoQwjsH93zrwApDxnwq": {
+      "id": 2124011595,
+      "title": "hide (midwest emo version)",
+      "artist": "Jacal",
+      "artistUrl": "https://soundcloud.com/jacal-436360255",
+      "url": "https://soundcloud.com/jacal-436360255/hide-midwest-emo-version",
+      "duration": 242164,
+      "fullDuration": 242155,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/jacal-436360255/hide-midwest-emo-version"
     }
   },
   "checked": {
@@ -996,9 +1139,9 @@
       "title": "Crocodile tears",
       "artist": "yukan",
       "profiles": [
-        "yukan"
+        "user-428613266"
       ],
-      "matched": false
+      "matched": true
     },
     "4PSedgFfQUWe6ncpmpEcxs": {
       "title": "LA",
@@ -1221,7 +1364,7 @@
       "title": "promise",
       "artist": "Dualshock",
       "profiles": [
-        "dualshock"
+        "dualshock_uk"
       ],
       "matched": false
     },
@@ -1245,16 +1388,15 @@
       "title": "addiction",
       "artist": "LONOWN, Asenssia",
       "profiles": [
-        "lonown",
-        "asenssia"
+        "hint"
       ],
-      "matched": false
+      "matched": true
     },
     "07SnvbvFJ1jUzpoBp9N4Cc": {
       "title": "addiction - Slowed",
       "artist": "LONOWN, Asenssia",
       "profiles": [
-        "lonown",
+        "lonown6",
         "asenssia"
       ],
       "matched": false
@@ -1433,9 +1575,9 @@
       "title": "said&done",
       "artist": "Gunnr",
       "profiles": [
-        "gunnr"
+        "hint"
       ],
-      "matched": false
+      "matched": true
     },
     "6s8VRW0J2mpQLq8pGNVYMv": {
       "title": "Vem pra Terra do Kn",
@@ -1512,9 +1654,9 @@
       "title": "type london",
       "artist": "ONDA ANDAR",
       "profiles": [
-        "ondaandar"
+        "hint"
       ],
-      "matched": false
+      "matched": true
     },
     "35E23jacawI1eOEzLNFD7m": {
       "title": "Feel The Music",
@@ -1536,7 +1678,7 @@
       "title": "SOS",
       "artist": "yukan",
       "profiles": [
-        "yukan"
+        "user-428613266"
       ],
       "matched": false
     },
@@ -1552,9 +1694,9 @@
       "title": "Matrix",
       "artist": "yukan",
       "profiles": [
-        "yukan"
+        "hint"
       ],
-      "matched": false
+      "matched": true
     },
     "4FxCgieR9z1F5VZmip603h": {
       "title": "lose control",
@@ -1584,18 +1726,17 @@
       "title": "BEGGIN HARDTEKK - Slowed",
       "artist": "wharoxmane, Y3LLAVISION",
       "profiles": [
-        "wharoxmane",
-        "y3llavision"
+        "hint"
       ],
-      "matched": false
+      "matched": true
     },
     "031aTZ4s6B7GqVxAxGbLxp": {
       "title": "Arcade",
       "artist": "yukan",
       "profiles": [
-        "yukan"
+        "hint"
       ],
-      "matched": false
+      "matched": true
     },
     "3Bhltrf7gpzOgqeuO6kfOw": {
       "title": "Artificial Intelligence",
@@ -1747,9 +1888,9 @@
       "title": "High",
       "artist": "Nia Smith",
       "profiles": [
-        "niasmith"
+        "niasmithy"
       ],
-      "matched": false
+      "matched": true
     },
     "5dzBRKS5r6c2urH8JVc96Q": {
       "title": "Двойной со льдом",
@@ -1764,9 +1905,9 @@
       "title": "Get My Get Back",
       "artist": "Nia Smith",
       "profiles": [
-        "niasmith"
+        "hint"
       ],
-      "matched": false
+      "matched": true
     },
     "2UKYhq5GAjhmFwBk7uwRGG": {
       "title": "Sweetest Season",
@@ -1843,9 +1984,9 @@
       "title": "somuchmore",
       "artist": "Gunnr",
       "profiles": [
-        "gunnr"
+        "lilgunnr"
       ],
-      "matched": false
+      "matched": true
     },
     "194GOG8mtzRSdIFlvIi7gJ": {
       "title": "FULLMOON!",
@@ -1939,7 +2080,7 @@
       "title": "cachalot",
       "artist": "ONDA ANDAR",
       "profiles": [
-        "ondaandar"
+        "onda_andar"
       ],
       "matched": false
     },
@@ -1956,9 +2097,9 @@
       "title": "Misfit",
       "artist": "Fixupboy",
       "profiles": [
-        "fixupboy"
+        "hint"
       ],
-      "matched": false
+      "matched": true
     },
     "0mfwrmshehvItXZNUh5Fuo": {
       "title": "Pull Up",
@@ -1996,7 +2137,7 @@
       "title": "addiction - Slowed",
       "artist": "LONOWN, Asenssia",
       "profiles": [
-        "lonown",
+        "lonown6",
         "asenssia"
       ],
       "matched": false
@@ -2005,7 +2146,7 @@
       "title": "P.O.S.",
       "artist": "Noah Brigden",
       "profiles": [
-        "noahbrigden"
+        "noahbrigden-scmusic"
       ],
       "matched": false
     },
@@ -2015,7 +2156,7 @@
       "profiles": [
         "lykkeli"
       ],
-      "matched": true
+      "matched": false
     },
     "4WKUmjoUeYkzyoEvTbiVdW": {
       "title": "Night , Blooming Jasmine .",
@@ -2023,13 +2164,13 @@
       "profiles": [
         "fakemink"
       ],
-      "matched": true
+      "matched": false
     },
     "2K28q6tF3BEPOntfwzgsNO": {
       "title": "I Got A Kitten",
       "artist": "Boxxy",
       "profiles": [
-        "boxxy"
+        "boxxymusic"
       ],
       "matched": false
     },
@@ -2037,7 +2178,7 @@
       "title": "PERCOLATOR",
       "artist": "Boxxy",
       "profiles": [
-        "boxxy"
+        "boxxymusic"
       ],
       "matched": false
     },
@@ -2045,24 +2186,20 @@
       "title": "Pigeon 2",
       "artist": "Boxxy",
       "profiles": [
-        "boxxy"
+        "boxxymusic"
       ],
       "matched": false
     },
     "6ZvAtevZvrjyFOzWo99yap": {
       "title": "NO, THE MOON JUMPSTYLE - slowed",
       "artist": "PANDEMXNIUM",
-      "profiles": [
-        "pandemxnium"
-      ],
+      "profiles": [],
       "matched": false
     },
     "0Gk3vqFZO8pl4OHb3Urh81": {
       "title": "Besorg’s Mir HardTekk",
       "artist": "V1AL",
-      "profiles": [
-        "v1al"
-      ],
+      "profiles": [],
       "matched": false
     },
     "6Etkg6YOs9mNpF6qN7dRyR": {
@@ -2223,15 +2360,15 @@
       "title": "SHOW NO LOVE",
       "artist": "BXNFXM",
       "profiles": [
-        "bxnfxm"
+        "hint"
       ],
-      "matched": false
+      "matched": true
     },
     "3A165Ag3texNWy7uB4t9LV": {
       "title": "dereal",
       "artist": "LONOWN, riserayss",
       "profiles": [
-        "lonown",
+        "lonown6",
         "riserayss"
       ],
       "matched": false
@@ -2256,9 +2393,9 @@
       "title": "hide - midwest emo version",
       "artist": "jacal",
       "profiles": [
-        "jacal"
+        "hint"
       ],
-      "matched": false
+      "matched": true
     },
     "25g4Jk4tYA3gOJhBugTpeX": {
       "title": "Kinda Like It That Way",
@@ -2354,7 +2491,7 @@
       "title": "worry - ultra slowed",
       "artist": "LONOWN, riserayss",
       "profiles": [
-        "lonown",
+        "lonown6",
         "riserayss"
       ],
       "matched": false

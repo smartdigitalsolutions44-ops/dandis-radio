@@ -8,7 +8,7 @@ const context = vm.createContext({ URL, Intl, Date, Math, Set, CustomEvent, setI
 vm.runInContext(fs.readFileSync('dist/tracks.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('dist/app.js', 'utf8'), context);
 const run = code => vm.runInContext(code, context);
-assert.equal(run('catalog.tracks.length'),274); assert.equal(run('queue().length'),121);
+assert.equal(run('catalog.tracks.length'),274); assert.equal(run('queue().length'),133);
 assert.equal(run('selected'),'4x6Ngo6y3DMS29fVCqX7DB');
 assert.match(nodes.get('player').children[0].src,/^https:\/\/w.soundcloud.com\/player\//);
 assert.equal(nodes.get('external').href,'https://soundcloud.com/graurstar/absence-has-a-name-slowed');
@@ -16,16 +16,16 @@ for(const track of context.window.RADIO_CATALOG.tracks) { if(track.status==='rea
 assert.equal(run("parseSoundCloud('https://m.soundcloud.com/artist/song?si=abc')"),'https://soundcloud.com/artist/song');
 assert.equal(run("parseSoundCloud('https://soundcloud.com/artist/sets/my-list')"),'https://soundcloud.com/artist/sets/my-list');
 for (const url of ['https://open.spotify.com/playlist/abc','https://soundcloud.com.evil.test/artist/song','https://soundcloud.com/artist','https://soundcloud.com/search/sounds?q=hi','https://soundcloud.com/artist/likes','javascript:alert(1)','https://user:pass@soundcloud.com/artist/song']) assert.throws(()=>run(`parseSoundCloud(${JSON.stringify(url)})`));
-filters[2].listeners.click(); assert.equal(nodes.get('track-list').children.length,153);
+filters[2].listeners.click(); assert.equal(nodes.get('track-list').children.length,141);
 filters[0].listeners.click(); nodes.get('track-search').value='graur';nodes.get('track-search').listeners.input();assert.equal(nodes.get('track-list').children.length,3); nodes.get('track-search').value='';nodes.get('track-search').listeners.input();
 const widgets=[]; let sound={policy:'MONETIZE',duration:170556,full_duration:170553};
 const widgetFactory=()=>{const item={handlers:{},bind(event,fn){this.handlers[event]=fn;},pause(){this.paused=true;},play(){this.played=true;},toggle(){this.toggled=true;},getCurrentSound(cb){cb(sound);},getSounds(cb){cb([sound]);},getCurrentSoundIndex(cb){cb(0);}};widgets.push(item);return item;};
 widgetFactory.Events={READY:'ready',PLAY:'play',PAUSE:'pause',FINISH:'finish',ERROR:'error'};context.window.SC={Widget:widgetFactory};run('attachWidget()');widgets[0].handlers.ready();assert.equal(nodes.get('play-toggle').disabled,false);widgets[0].handlers.play();assert.equal(nodes.get('play-toggle').textContent,'Pause');
 const old=widgets[0];nodes.get('next').listeners.click();assert.notEqual(run('selected'),'4x6Ngo6y3DMS29fVCqX7DB');assert.equal(nodes.get('play-toggle').disabled,true);old.handlers.ready();assert.equal(nodes.get('play-toggle').disabled,true,'Stale iframe cannot enable new player');
 const active=widgets.at(-1);active.handlers.ready();active.handlers.finish();assert.equal(run('selected'),context.window.RADIO_CATALOG.tracks[4].id,'Finish advances to next verified song');
-context.document.getElementById('playlist-url').value='https://soundcloud.com/testartist/testsong';context.document.getElementById('playlist-name').value='My custom song';nodes.get('playlist-form').listeners.submit({preventDefault(){}});assert.equal(run('customTracks.length'),1);assert.equal(run('queue().length'),122);assert.ok(saved.get('dandis-radio-soundcloud-v1'));
+context.document.getElementById('playlist-url').value='https://soundcloud.com/testartist/testsong';context.document.getElementById('playlist-name').value='My custom song';nodes.get('playlist-form').listeners.submit({preventDefault(){}});assert.equal(run('customTracks.length'),1);assert.equal(run('queue().length'),134);assert.ok(saved.get('dandis-radio-soundcloud-v1'));
 nodes.get('playlist-url').value='https://soundcloud.com/testartist/testsong';nodes.get('playlist-form').listeners.submit({preventDefault(){}});assert.equal(run('customTracks.length'),1,'Duplicate links are not added');
-sound={policy:'SNIP',duration:30000,full_duration:200000};widgets.at(-1).handlers.ready();assert.equal(nodes.get('play-toggle').disabled,true);assert.equal(run('queue().length'),121);assert.match(nodes.get('player-status').textContent,/only a preview/);
+sound={policy:'SNIP',duration:30000,full_duration:200000};widgets.at(-1).handlers.ready();assert.equal(nodes.get('play-toggle').disabled,true);assert.equal(run('queue().length'),133);assert.match(nodes.get('player-status').textContent,/only a preview/);
 assert.ok(!fs.readFileSync('dist/app.js','utf8').includes('open.spotify.com/embed'));
 const html=fs.readFileSync('dist/index.html','utf8');assert.match(html,/Dandi.s Radio/);assert.match(html,/is.gd\/dandiradio/);
 console.log('Passed: 57 verified matches, SoundCloud-only player, safe links, filters/search, playback events, stale callbacks, auto-next, saved additions, duplicates and preview detection.');
