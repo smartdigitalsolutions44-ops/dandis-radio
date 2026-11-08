@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-08T11:57:12.827Z",
+  "checkedAt": "2026-11-08T12:17:41.946Z",
   "rule": "uploader is the credited artist, same title and version words, full duration within 3s",
   "matches": {
     "4PSedgFfQUWe6ncpmpEcxs": {
@@ -1132,6 +1132,110 @@
       "embeddable": "all",
       "streamable": true,
       "source": "https://soundcloud.com/jacal-436360255/hide-midwest-emo-version"
+    },
+    "6AJaDD64IxpDR3qntU56Pd": {
+      "id": 2294777741,
+      "title": "P.O.S.",
+      "artist": "Noah Brigden",
+      "artistUrl": "https://soundcloud.com/noahbrigden-scmusic",
+      "url": "https://soundcloud.com/noahbrigden-scmusic/p-o-s",
+      "duration": 198278,
+      "fullDuration": 198278,
+      "policy": "BLOCK",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/noahbrigden-scmusic/p-o-s"
+    },
+    "2K28q6tF3BEPOntfwzgsNO": {
+      "id": 2135657625,
+      "title": "I Got A Kitten",
+      "artist": "Boxxy",
+      "artistUrl": "https://soundcloud.com/boxxymusic",
+      "url": "https://soundcloud.com/boxxymusic/gotta-have-a-kitten",
+      "duration": 124166,
+      "fullDuration": 124160,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/boxxymusic/gotta-have-a-kitten"
+    },
+    "0W4oOtMk32tg16D9nCDgBK": {
+      "id": 2231479760,
+      "title": "Pigeon 2",
+      "artist": "Boxxy",
+      "artistUrl": "https://soundcloud.com/boxxymusic",
+      "url": "https://soundcloud.com/boxxymusic/pigeon-2-5",
+      "duration": 101867,
+      "fullDuration": 101851,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/boxxymusic/pigeon-2-5"
+    },
+    "6mQBjVrNhpOIzQd1EC49cV": {
+      "id": 2264434442,
+      "title": "Boxxy - Percolator",
+      "artist": "Boxxy",
+      "artistUrl": "https://soundcloud.com/boxxymusic",
+      "url": "https://soundcloud.com/boxxymusic/percolator",
+      "duration": 124046,
+      "fullDuration": 124029,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/boxxymusic/percolator"
+    },
+    "24DkScYiXOha1QMVpvCJp5": {
+      "id": 1614567885,
+      "title": "God's promise (Speed Up)",
+      "artist": "daniel.mp3",
+      "artistUrl": "https://soundcloud.com/danielmp3-music",
+      "url": "https://soundcloud.com/danielmp3-music/gods-promise-speed-up",
+      "duration": 84229,
+      "fullDuration": 84245,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/danielmp3-music/gods-promise-speed-up"
+    },
+    "7g3g00RKlqSIe2G8KKCgsE": {
+      "id": 1555495051,
+      "title": "Killswitch Lullaby",
+      "artist": "Flawed Mangoes",
+      "artistUrl": "https://soundcloud.com/flamingoflamingoflamingo",
+      "url": "https://soundcloud.com/flamingoflamingoflamingo/killswitch-lullaby",
+      "duration": 147143,
+      "fullDuration": 147148,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/flamingoflamingoflamingo/killswitch-lullaby"
+    },
+    "4nkR7dBuAleYLCjFPC6YPJ": {
+      "id": 2084643327,
+      "title": "DIE",
+      "artist": "vandalism",
+      "artistUrl": "https://soundcloud.com/vndalsw",
+      "url": "https://soundcloud.com/vndalsw/die",
+      "duration": 180368,
+      "fullDuration": 180349,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/vndalsw/die"
+    },
+    "3rawy0jf5HDSOvE1ez14Pl": {
+      "id": 2128007859,
+      "title": "15000000 easy",
+      "artist": "torr",
+      "artistUrl": "https://soundcloud.com/t0rr",
+      "url": "https://soundcloud.com/t0rr/15000000-easy",
+      "duration": 283546,
+      "fullDuration": 283500,
+      "policy": "MONETIZE",
+      "embeddable": "all",
+      "streamable": true,
+      "source": "https://soundcloud.com/t0rr/15000000-easy"
     }
   },
   "checked": {
@@ -2148,7 +2252,7 @@
       "profiles": [
         "noahbrigden-scmusic"
       ],
-      "matched": false
+      "matched": true
     },
     "4Z6Jl9a8gZvwlfc8wrUf11": {
       "title": "Little Bit",
@@ -2172,7 +2276,7 @@
       "profiles": [
         "boxxymusic"
       ],
-      "matched": false
+      "matched": true
     },
     "6mQBjVrNhpOIzQd1EC49cV": {
       "title": "PERCOLATOR",
@@ -2180,7 +2284,7 @@
       "profiles": [
         "boxxymusic"
       ],
-      "matched": false
+      "matched": true
     },
     "0W4oOtMk32tg16D9nCDgBK": {
       "title": "Pigeon 2",
@@ -2188,7 +2292,7 @@
       "profiles": [
         "boxxymusic"
       ],
-      "matched": false
+      "matched": true
     },
     "6ZvAtevZvrjyFOzWo99yap": {
       "title": "NO, THE MOON JUMPSTYLE - slowed",
@@ -2385,9 +2489,9 @@
       "title": "God's promise - Speed Up",
       "artist": "daniel.mp3",
       "profiles": [
-        "danielmp3"
+        "hint"
       ],
-      "matched": false
+      "matched": true
     },
     "4PMPoQwjsH93zrwApDxnwq": {
       "title": "hide - midwest emo version",
@@ -2408,8 +2512,10 @@
     "7g3g00RKlqSIe2G8KKCgsE": {
       "title": "Killswitch Lullaby",
       "artist": "Flawed Mangoes",
-      "profiles": [],
-      "matched": false
+      "profiles": [
+        "hint"
+      ],
+      "matched": true
     },
     "2o4kFMrOGhXwdpKd2ZUaKs": {
       "title": "I Want Things to Be Beautiful",
@@ -2421,9 +2527,9 @@
       "title": "DIE",
       "artist": "Vandalism",
       "profiles": [
-        "vandalism"
+        "hint"
       ],
-      "matched": false
+      "matched": true
     },
     "55E0iwwaRXZ3cneyi9ECnp": {
       "title": "Curse is Lifted - Club rmx",
@@ -2749,9 +2855,9 @@
       "title": "15000000 easy",
       "artist": "torr",
       "profiles": [
-        "torrmusic"
+        "hint"
       ],
-      "matched": false
+      "matched": true
     },
     "20Y4EAmSXru3foatDg4OqN": {
       "title": "LET'S GO",
