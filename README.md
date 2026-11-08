@@ -6,7 +6,7 @@ Live (GitHub Pages): https://smartdigitalsolutions44-ops.github.io/dandis-radio/
 
 Older host: https://work-radio-dandy-nov7.colorfulmacaron1.chatgpt.site/ (no longer updated)
 
-Easy address: https://is.gd/dandisradio (the older https://is.gd/dandyradio also works).
+Easy address: https://is.gd/dandiradio (points to the GitHub Pages site). The older https://is.gd/dandisradio and https://is.gd/dandyradio still go to the old ChatGPT host and cannot be changed.
 
 ## Run locally
 

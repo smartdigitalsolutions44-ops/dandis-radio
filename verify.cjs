@@ -27,5 +27,5 @@ context.document.getElementById('playlist-url').value='https://soundcloud.com/te
 nodes.get('playlist-url').value='https://soundcloud.com/testartist/testsong';nodes.get('playlist-form').listeners.submit({preventDefault(){}});assert.equal(run('customTracks.length'),1,'Duplicate links are not added');
 sound={policy:'SNIP',duration:30000,full_duration:200000};widgets.at(-1).handlers.ready();assert.equal(nodes.get('play-toggle').disabled,true);assert.equal(run('queue().length'),57);assert.match(nodes.get('player-status').textContent,/only a preview/);
 assert.ok(!fs.readFileSync('dist/app.js','utf8').includes('open.spotify.com/embed'));
-const html=fs.readFileSync('dist/index.html','utf8');assert.match(html,/Dandi.s Radio/);assert.match(html,/is.gd\/dandisradio/);
+const html=fs.readFileSync('dist/index.html','utf8');assert.match(html,/Dandi.s Radio/);assert.match(html,/is.gd\/dandiradio/);
 console.log('Passed: 57 verified matches, SoundCloud-only player, safe links, filters/search, playback events, stale callbacks, auto-next, saved additions, duplicates and preview detection.');
