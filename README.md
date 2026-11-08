@@ -39,9 +39,9 @@ The Desktop export deliberately excludes the hosted checkout's `.git` and `.open
 
 ## Music coverage and limitations
 
-100 song names were exposed by the public Spotify playlist embed. This is not confirmation that the source playlist has only 100 tracks. The source URL is recorded in `soundcloud-import.json`.
+The catalog is 274 songs: the Spotify Liked Songs export (exported with Exportify on 2026-11-08), which includes all 100 songs from the earlier public playlist import. The original 100 keep their positions; the other 174 follow.
 
-57 exact artist/version matches (28 added 2026-11-07) were checked against SoundCloud's public metadata, including duration and embedding policy. Only tracks with `ALLOW`/`MONETIZE`, full duration, and public embedding are in the ready queue. 1 identified match was preview-only, 1 was blocked, and 41 are not verified. They remain visible in the `To find` filter. There is no Spotify playback or login in the website.
+121 songs are Ready. 57 of these were manually reviewed. The rest were matched automatically by `find-soundcloud.mjs`, which accepts a match only when the uploader is the credited artist, the title and version words (slowed, remix and so on) are the same, and the full length is within 3 seconds of Spotify's. Only tracks with `ALLOW`/`MONETIZE`, full duration and public embedding are Ready. 8 matches are preview-only, 6 are blocked or not embeddable, and the rest are not found. They remain visible in the `To find` filter. There is no Spotify playback or login in the website.
 
 SoundCloud controls playback and may show ads or apply device, network, geographic or future catalog restrictions. The work scanner has not been tested. No DRM or subscription bypass, downloading, rehosting or audio extraction is used. Custom links are checked by the widget when possible and saved only in localStorage on that browser. A custom link is not a verified imported match.
 
@@ -49,9 +49,11 @@ Lyrics are fetched from LRCLIB when requested. Search failures and rate limiting
 
 ## Updating matched songs
 
-`soundcloud-import.json` contains source metadata. `soundcloud-evidence.json` records the checked public SoundCloud metadata. `build-catalog.mjs` has the manually reviewed index-to-track-ID mapping and verifies policies and duration before producing `dist/tracks.js`:
+`soundcloud-import.json` contains source metadata. `soundcloud-auto-matches.json` records the automatic matches and which SoundCloud profiles were checked for each song. `soundcloud-evidence.json` records the checked public SoundCloud metadata. `build-catalog.mjs` has the manually reviewed index-to-track-ID mapping and verifies policies and duration before producing `dist/tracks.js`:
 
 ```sh
+node import-liked.mjs path/to/liked.csv   # optional: merge a new Exportify Liked Songs CSV
+node find-soundcloud.mjs                   # optional: search SoundCloud for unmatched songs
 node build-catalog.mjs
 node verify.cjs
 node verify-lyrics.cjs
